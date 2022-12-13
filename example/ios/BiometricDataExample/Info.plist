@@ -4,6 +4,8 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
+  <key>NSFaceIDUsageDescription</key>
+  <string>Use the face ID to login and encrypt data</string>
 	<key>CFBundleDisplayName</key>
 	<string>BiometricDataExample</string>
 	<key>CFBundleExecutable</key>
@@ -52,4 +54,5 @@
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 </dict>
+
 </plist>

@@ -8,21 +8,21 @@ const BiometricData = NativeModules.BiometricData ? NativeModules.BiometricData 
 export type BiometricType = 'face' | 'fingerprint' | 'unknown' | 'none';
 export interface BiometricConfig {
   title: string;
-  subTitle: string;
-  negativeButtonText: string;
+  subTitle: string; // only android
+  negativeButtonText: string; // only android
 }
 export function checkSupportBiometric(): Promise<BiometricType> {
   return BiometricData.checkSupportBiometric();
 }
 export function unlockApp(biometricConfig: BiometricConfig): Promise<boolean> {
   const { title, subTitle, negativeButtonText } = biometricConfig;
-  return BiometricData.unlockApp(title, subTitle, negativeButtonText);
+  return Platform.OS === 'ios' ? BiometricData.unlockApp(title) : BiometricData.unlockApp(title, subTitle, negativeButtonText);
 }
 export function encryptData(biometricConfig: BiometricConfig, data: string): Promise<string> {
   const { title, subTitle, negativeButtonText } = biometricConfig;
-  return BiometricData.encryptData(title, subTitle, negativeButtonText, data);
+  return Platform.OS === 'ios' ? BiometricData.encryptData(title, data) : BiometricData.encryptData(title, subTitle, negativeButtonText, data);
 }
 export function decryptData(biometricConfig: BiometricConfig, data: string): Promise<string> {
   const { title, subTitle, negativeButtonText } = biometricConfig;
-  return BiometricData.decryptData(title, subTitle, negativeButtonText, data);
+  return Platform.OS === 'ios' ? BiometricData.decryptData(title, data) : BiometricData.decryptData(title, subTitle, negativeButtonText, data);
 }

@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
-import { checkSupportBiometric, encryptData, unlockApp,decryptData } from 'react-native-biometric-data';
+import { checkSupportBiometric, encryptData, unlockApp, decryptData } from 'react-native-biometric-data';
 
 export default function App() {
   const [result, setResult] = React.useState('');
@@ -12,13 +12,19 @@ export default function App() {
     getData()
   }, []);
   const getData = async () => {
-    const res = await checkSupportBiometric()
-    setResult(res)
+    try {
+      const res = await checkSupportBiometric()
+      console.log(res);
+
+      setResult(res)
+    } catch (error) {
+      console.log(error);
+    }
   }
   const handleUnlock = async () => {
     try {
       const res = await unlockApp({
-        title: 'Unlock',
+        title: 'Unlock123',
         subTitle: 'Unlock',
         negativeButtonText: 'Cancel'
       })
@@ -83,6 +89,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
+    backgroundColor: "#000",
     justifyContent: 'center',
   },
   box: {

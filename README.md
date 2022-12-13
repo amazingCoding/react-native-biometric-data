@@ -2,6 +2,7 @@
   人脸/指纹识别
 ## ios
   人脸/指纹识别
+  add `NSFaceIDUsageDescription` to info.plist
 
 
 ## APO
